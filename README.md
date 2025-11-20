@@ -173,8 +173,6 @@ Optimize performance
 Feel free to fork the repo and submit a PR.
 
 
-text
-MIT License
 👤 Author
 Muteb Alharbi
 Cybersecurity Enthusiast • Web Developer
