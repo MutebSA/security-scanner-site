@@ -157,24 +157,7 @@ A portfolio project
 
 A demo of how security checks can be integrated into a web app
 
-📸 Screenshots (Optional)
-You can add screenshots like:
 
-markdown
-![Home Page](./screenshots/home.png)
-![Scan Result](./screenshots/result.png)
-🗺️ Roadmap / Ideas
-Add API endpoint to scan URLs via JSON
-
-Add IP address lookup and geolocation
-
-Integrate more threat feeds
-
-Add history of previous scans (per session or per user)
-
-Add dark mode UI
-
-Multilingual support (e.g., English / Arabic interface)
 
 🤝 Contributing
 Pull requests are welcome!
@@ -189,8 +172,6 @@ Optimize performance
 
 Feel free to fork the repo and submit a PR.
 
-📜 License
-Specify your license here, for example:
 
 text
 MIT License
