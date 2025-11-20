@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Invalid Link – MutebSA Security</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="page-wrapper">
+
+  <div class="container" style="text-align:center; margin-top:60px;">
+    <h1 class="hero-title">❌ <span class="hero-gradient">خطأ</span></h1>
+    <p class="hero-subtitle">
+      رابط التفعيل غير صالح أو مستخدم مسبقًا.
+    </p>
+
+    <a href="{{ url_for('login') }}">
+      <button class="button button-primary">🔐 الذهاب لتسجيل الدخول</button>
+    </a>
+  </div>
+
+</div>
+</body>
+</html>

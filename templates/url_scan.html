@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Scan URL – MutebSA Security</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="page-wrapper">
+
+  <!-- NAVBAR -->
+  <div class="navbar-wrapper">
+    <div class="navbar">
+      <div class="brand">MutebSA Security</div>
+      <div class="left">
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('scan_url') }}">Scan URL</a>
+        <a href="{{ url_for('scan_file') }}">Scan File</a>
+        {% if 'user' in session %}
+          <a href="{{ url_for('dashboard') }}">Dashboard</a>
+        {% endif %}
+      </div>
+      <div class="right">
+        {% if 'user' in session %}
+          <a href="{{ url_for('profile') }}">Profile</a>
+          <a href="{{ url_for('logout') }}">Logout</a>
+        {% else %}
+          <a href="{{ url_for('login') }}">Login</a>
+          <a href="{{ url_for('register') }}">Register</a>
+        {% endif %}
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="container">
+    <h1 class="hero-title">Scan <span class="hero-gradient">URL</span></h1>
+    <p class="hero-subtitle">
+      أدخل الرابط المشبوه، وخلي محرك MutebSA يحلله لك ويعطيك درجة الخطورة والتفاصيل.
+    </p>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flash-container">
+          {% for category, msg in messages %}
+            <div class="flash flash-{{ category }}">{{ msg }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <div class="card">
+      <form method="POST">
+        <label for="target_url">الرابط المراد فحصه</label>
+        <input
+          type="text"
+          id="target_url"
+          name="target_url"
+          placeholder="https://example.com/maybe-suspicious"
+          required
+        >
+        <button type="submit" class="button button-primary" style="margin-top:4px;">
+          🔍 فحص الرابط
+        </button>
+      </form>
+    </div>
+
+    <div style="margin-top:18px; font-size:12px; color:#9ca3af;">
+      ⚠ الفحص يعتمد على قواعد بيانات مخصّصة وتحليل بسيط، ولا يغني عن أدوات الحماية الاحترافية.
+    </div>
+  </div>
+
+  <div class="footer">
+    Powered by <strong>MutebSA</strong>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>تم التحقق – MutebSA Security</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <!-- تحويل تلقائي بعد 5 ثواني إلى صفحة تسجيل الدخول -->
+  <meta http-equiv="refresh" content="5;url={{ url_for('login') }}">
+</head>
+<body>
+<div class="page-wrapper">
+
+  <div class="container" style="max-width: 600px; margin-top: 60px; text-align:center;">
+    <h1 class="hero-title">تم <span class="hero-gradient">التحقق بنجاح</span> ✅</h1>
+    <p class="hero-subtitle">
+      تم تفعيل حسابك الآن، ويمكنك تسجيل الدخول واستخدام النظام بكامل الميزات.
+    </p>
+
+    <p style="font-size:13px; color:#9ca3af; margin-bottom:18px;">
+      سيتم تحويلك تلقائيًا إلى صفحة تسجيل الدخول خلال ثوانٍ...
+      <br>
+      إذا لم يتم التحويل تلقائيًا، استخدم الأزرار أدناه.
+    </p>
+
+    <div class="result-actions" style="justify-content:center;">
+      <a href="{{ url_for('login') }}">
+        <button class="button button-primary">🔐 الذهاب لتسجيل الدخول</button>
+      </a>
+      <a href="{{ url_for('index') }}">
+        <button class="button button-secondary">🏠 الرجوع للصفحة الرئيسية</button>
+      </a>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

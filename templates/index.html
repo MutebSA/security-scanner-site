@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Security Scanner – MutebSA</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="page-wrapper">
+
+  <!-- NAVBAR -->
+  <div class="navbar-wrapper">
+    <div class="navbar">
+      <div class="brand">MutebSA Security</div>
+      <div class="left">
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('scan_url') }}">Scan URL</a>
+        <a href="{{ url_for('scan_file') }}">Scan File</a>
+        {% if 'user' in session %}
+          <a href="{{ url_for('dashboard') }}">Dashboard</a>
+        {% endif %}
+      </div>
+      <div class="right">
+        {% if 'user' in session %}
+          <a href="{{ url_for('profile') }}">Profile</a>
+          <a href="{{ url_for('logout') }}">Logout</a>
+        {% else %}
+          <a href="{{ url_for('login') }}">Login</a>
+          <a href="{{ url_for('register') }}">Register</a>
+        {% endif %}
+      </div>
+      
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="container">
+
+    <!-- Hero -->
+    <div class="hero">
+      <h1 class="hero-title">
+        Security <span class="hero-gradient">Scanner</span>
+      </h1>
+      <p class="hero-subtitle">
+        افحص الروابط والملفات المشبوهة بلحظات، باستخدام قاعدة بيانات مُحدَّثة
+        ومحرك تحليلي مبني بواسطة <strong>MutebSA</strong>.
+      </p>
+
+      <div class="hero-card">
+        <p style="font-size:13px; color:#9ca3af; margin-bottom:10px;">
+          اختر نوع الفحص:
+        </p>
+        <div class="btn-row">
+          <a href="{{ url_for('scan_url') }}">
+            <button class="button button-primary">
+              🔗 Scan URL
+            </button>
+          </a>
+          <a href="{{ url_for('scan_file') }}">
+            <button class="button button-secondary">
+              📁 Scan File
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Features under the buttons -->
+    <div class="features">
+
+      <div class="feature-card">
+        <div class="feature-tag">Engine</div>
+        <h2>Real-Time Threat Detection</h2>
+        <p>
+          تحليل فوري للروابط والملفات باستخدام مؤشرات خطورة مخصّصة
+          وقوائم سوداء يتم تحديثها عبر GitHub.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-tag">Privacy</div>
+        <h2>Privacy-First Design</h2>
+        <p>
+          لا يتم حفظ ملفاتك بشكل دائم، كل الفحوصات تتم بغرض التحليل فقط،
+          مع احترام تام لخصوصية المستخدم.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-tag">Brand</div>
+        <h2>Powered by MutebSA</h2>
+        <p>
+          مشروع شخصي مبني بحب، يجمع بين البساطة والاحتراف في مجال الأمن السيبراني،
+          وقابل للتطوير لمستويات أعلى.
+        </p>
+      </div>
+
+    </div>
+
+  </div><!-- /container -->
+
+  <!-- FOOTER -->
+  <div class="footer">
+    Powered by <strong>MutebSA</strong> • All scans are for educational & testing purposes only.
+  </div>
+
+</div><!-- /page-wrapper -->
+</body>
+</html>

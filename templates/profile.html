@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Profile – MutebSA Security</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="page-wrapper">
+
+  <!-- NAVBAR -->
+  <div class="navbar-wrapper">
+    <div class="navbar">
+      <div class="brand">MutebSA Security</div>
+      <div class="left">
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('scan_url') }}">Scan URL</a>
+        <a href="{{ url_for('scan_file') }}">Scan File</a>
+        <a href="{{ url_for('dashboard') }}">Dashboard</a>
+      </div>
+      <div class="right">
+        <a href="{{ url_for('profile') }}">Profile</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <h1 class="hero-title">Your <span class="hero-gradient">Profile</span></h1>
+    <p class="hero-subtitle">
+      معلومات حسابك المسجلة في نظام MutebSA Security.
+    </p>
+
+    <div class="card">
+      <p><strong>الاسم الكامل:</strong> {{ user['full_name'] }}</p>
+      <p><strong>اسم المستخدم:</strong> {{ user['username'] }}</p>
+      <p><strong>البريد الإلكتروني:</strong> {{ user['email'] }}</p>
+      <p>
+        <strong>حالة الحساب:</strong>
+        {% if user['is_verified'] %}
+          ✅ مفعّل
+        {% else %}
+          ⛔ غير مفعّل
+        {% endif %}
+      </p>
+    </div>
+  </div>
+
+  <div class="footer">
+    Powered by <strong>MutebSA</strong>
+  </div>
+</div>
+</body>
+</html>

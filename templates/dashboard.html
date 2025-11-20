@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Dashboard – MutebSA Security</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="page-wrapper">
+
+  <!-- NAVBAR -->
+  <div class="navbar-wrapper">
+    <div class="navbar">
+      <div class="brand">MutebSA Security</div>
+      <div class="left">
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('scan_url') }}">Scan URL</a>
+        <a href="{{ url_for('scan_file') }}">Scan File</a>
+        <a href="{{ url_for('dashboard') }}">Dashboard</a>
+      </div>
+      <div class="right">
+        {% if 'user' in session %}
+          <a href="{{ url_for('profile') }}">Profile</a>
+          <a href="{{ url_for('logout') }}">Logout</a>
+        {% else %}
+          <a href="{{ url_for('login') }}">Login</a>
+          <a href="{{ url_for('register') }}">Register</a>
+        {% endif %}
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="container">
+    <h1 class="hero-title">Scan <span class="hero-gradient">History</span></h1>
+    <p class="hero-subtitle">
+      هنا تقدر تشوف آخر محاولات الفحص، نوع الفحص، الهدف، درجة الخطورة، وملخص التحليل.
+    </p>
+
+    <div class="card">
+      {% if scans %}
+        <table class="history-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Type</th>
+              <th>Target</th>
+              <th>Score</th>
+              <th>Category</th>
+              <th>Notes</th>
+              <th>Time (UTC)</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for s in scans %}
+              <tr class="risk-{{ s['category']|lower }}">
+                <td>{{ s['id'] }}</td>
+                <td>{{ s['scan_type'] }}</td>
+                <td>{{ s['target'] }}</td>
+                <td>{{ s['score'] }}</td>
+                <td>{{ s['category'] }}</td>
+                <td>{{ s['notes'] }}</td>
+                <td>{{ s['created_at'] }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% else %}
+      <p class="no-scans">لا توجد فحوصات مسجلة حتى الآن.</p>
+
+      <div style="text-align: center; margin-top: 20px;">
+          <a href="{{ url_for('index') }}" 
+             style="
+              display: inline-block;
+              padding: 12px 24px;
+              background: #4a5cff;
+              color: white;
+              border-radius: 8px;
+              font-size: 16px;
+              text-decoration: none;
+              transition: 0.2s;
+             "
+             onmouseover="this.style.background='#3948e0'"
+             onmouseout="this.style.background='#4a5cff'">
+              ⟵ ابدأ فحص الآن
+          </a>
+      </div>      
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="footer">
+    Powered by <strong>MutebSA</strong>
+  </div>
+</div>
+</body>
+</html>

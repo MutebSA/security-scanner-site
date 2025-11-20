@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Register – MutebSA Security</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="page-wrapper">
+
+  <!-- NAVBAR -->
+  <div class="navbar-wrapper">
+    <div class="navbar">
+      <div class="brand">MutebSA Security</div>
+      <div class="left">
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('scan_url') }}">Scan URL</a>
+        <a href="{{ url_for('scan_file') }}">Scan File</a>
+        {% if 'user' in session %}
+          <a href="{{ url_for('dashboard') }}">Dashboard</a>
+        {% endif %}
+      </div>
+      <div class="right">
+        {% if 'user' in session %}
+          <a href="{{ url_for('profile') }}">Profile</a>
+          <a href="{{ url_for('logout') }}">Logout</a>
+        {% else %}
+          <a href="{{ url_for('login') }}">Login</a>
+          <a href="{{ url_for('register') }}">Register</a>
+        {% endif %}
+      </div>      
+    </div>
+  </div>
+
+  <div class="container">
+    <h1 class="hero-title">Create <span class="hero-gradient">Account</span></h1>
+    <p class="hero-subtitle">
+      قم بإنشاء حساب جديد للوصول إلى لوحة التحكم ومتابعة عمليات الفحص الخاصة بك.
+    </p>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flash-container">
+          {% for category, msg in messages %}
+            <div class="flash flash-{{ category }}">{{ msg }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <div class="card">
+      <form method="POST">
+
+        <label>الاسم الكامل</label>
+        <input type="text" name="full_name" placeholder="مثال: متعب سعود" required>
+
+        <label>اسم المستخدم</label>
+        <input type="text" name="username" placeholder="muteb123" required>
+
+        <label>البريد الإلكتروني</label>
+        <input type="email" name="email" placeholder="email@example.com" required>
+
+        <label>كلمة المرور</label>
+        <input type="password" name="password" required>
+
+        <label>تأكيد كلمة المرور</label>
+        <input type="password" name="confirm" required>
+
+        <button type="submit" class="button button-primary">
+          ✨ إنشاء حساب
+        </button>
+
+      </form>
+
+      <p style="font-size:13px; color:#9ca3af; margin-top:10px;">
+        عندك حساب؟ <a href="{{ url_for('login') }}">سجّل دخول</a>
+      </p>
+    </div>
+  </div>
+
+  <div class="footer">
+    Powered by <strong>MutebSA</strong>
+  </div>
+</div>
+</body>
+</html>

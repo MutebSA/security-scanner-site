@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Verification Challenge – MutebSA Security</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="page-wrapper">
+
+  <div class="container" style="max-width: 600px; margin-top: 60px;">
+    <h1 class="hero-title">عملية <span class="hero-gradient">تحقق</span></h1>
+    <p class="hero-subtitle">
+      قبل تفعيل حسابك، نحتاج منك تجاوب على هذا التحقق البسيط.
+    </p>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flash-container">
+          {% for category, msg in messages %}
+            <div class="flash flash-{{ category }}">{{ msg }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <div class="card">
+      <form method="POST">
+        <p style="font-size:14px; margin-bottom:10px;">
+          <strong>السؤال العشوائي:</strong>
+        </p>
+        <p style="font-size:16px; margin-bottom:16px;">
+          {{ question }}
+        </p>
+
+        <label>إجابتك</label>
+        <input type="text" name="answer" placeholder="اكتب الناتج هنا" required>
+
+        <button type="submit" class="button button-primary" style="margin-top:6px;">
+          ✅ تأكيد التحقق
+        </button>
+      </form>
+
+      <p style="font-size:12px; color:#9ca3af; margin-top:12px;">
+        إذا واجهت مشكلة، يمكنك الرجوع للصفحة الرئيسية:
+      </p>
+      <a href="{{ url_for('index') }}">
+        <button class="button button-secondary">
+          ⬅ الرجوع للموقع
+        </button>
+      </a>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{{ scan_type }} Result – MutebSA Security</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="page-wrapper">
+
+  <!-- NAVBAR -->
+  <div class="navbar-wrapper">
+    <div class="navbar">
+      <div class="brand">MutebSA Security</div>
+      <div class="left">
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('scan_url') }}">Scan URL</a>
+        <a href="{{ url_for('scan_file') }}">Scan File</a>
+        {% if 'user' in session %}
+          <a href="{{ url_for('dashboard') }}">Dashboard</a>
+        {% endif %}
+      </div>
+      <div class="right">
+        {% if 'user' in session %}
+          <a href="{{ url_for('profile') }}">Profile</a>
+          <a href="{{ url_for('logout') }}">Logout</a>
+        {% else %}
+          <a href="{{ url_for('login') }}">Login</a>
+          <a href="{{ url_for('register') }}">Register</a>
+        {% endif %}
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="container">
+    <h1 class="hero-title">
+      Scan <span class="hero-gradient">Result</span>
+    </h1>
+    <p class="hero-subtitle">
+      هذا هو تحليل الفحص الذي تم بواسطة محرك MutebSA، بناءً على قواعد البيانات والمؤشرات المتاحة.
+    </p>
+
+    <div class="card result-card risk-{{ category|lower }}">
+      <div class="result-header">
+        <div class="result-main">
+          <div class="result-pill">{{ scan_type }}</div>
+          <div class="result-subject">{{ subject }}</div>
+        </div>
+        <div class="result-score">
+          <div class="score-circle">
+            <span class="score-number">{{ score }}</span>
+          </div>
+          <div class="score-meta">
+            <span class="category-pill">{{ category }}</span>
+            <span class="score-label">Risk score (0–100)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="result-body">
+        <h3>Analysis notes</h3>
+        {% if notes %}
+          <ul class="notes-list">
+            {% for n in notes %}
+              <li>{{ n }}</li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p style="font-size:13px; color:#9ca3af;">
+            لا توجد ملاحظات إضافية، لم يتم رصد أنماط عالية الخطورة في هذا الفحص.
+          </p>
+        {% endif %}
+      </div>
+
+      <div class="result-actions">
+        <a href="{{ url_for('scan_url') }}">
+          <button class="button button-secondary">🔁 فحص رابط جديد</button>
+        </a>
+        <a href="{{ url_for('scan_file') }}">
+          <button class="button button-secondary">🧪 فحص ملف جديد</button>
+        </a>
+        <a href="{{ url_for('index') }}">
+          <button class="button button-primary">🏠 العودة للصفحة الرئيسية</button>
+        </a>
+      </div>
+    </div>
+
+    <div style="margin-top:18px; font-size:12px; color:#9ca3af;">
+      ⓘ النتائج تقريبية وتعتمد على قواعد بيانات مخصّصة؛ لا تعتبر بديلاً عن حلول الحماية الاحترافية.
+    </div>
+  </div>
+
+  <div class="footer">
+    Powered by <strong>MutebSA</strong>
+  </div>
+</div>
+</body>
+</html>
